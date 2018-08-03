@@ -1,0 +1,151 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+{{! The big featured header }}
+<header class="main-header {{#if @blog.cover}}" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}">
+{{navigation}}
+<div class="vertical">
+  <div class="main-header-content inner">
+    <h1 class="page-title">{{@blog.title}}</h1>
+    <h2 class="page-description">{{@blog.description}}</h2>
+  </div>
+</div>
+</header>
+
+{{! The main content area on the homepage }}
+<main id="content" class="content" role="main">
+  <div class="post-list-wrapper">
+    <div class="post-list">
+
+      {{! This is the post loop - each post will be output using this markup }} {{#foreach posts}}
+      <article class="homepage-post">
+        <header class="post-header">
+          {{!--
+          <a href="{{url}}" class="post-attach-image">
+            <img src="{{image}}" alt="{{image}}">
+          </a> --}}
+          <h2 class="post-title">
+            <a href="{{url}}">{{{title}}}</a>
+          </h2>
+        </header>
+        <section class="post-excerpt">
+          <p>{{excerpt characters="120"}}...</p>
+        </section>
+        <footer class="post-meta">
+          <div class="post-meta-left">
+            {{#if author.image}}
+            <img class="author-thumb" src="{{author.image}}" alt="{{author.name}}" nopin="nopin" /> {{/if}}
+            <span>{{author}}</span>
+            <i class="split-point"></i>
+            <span class="post-meta-tag" id="post-meta-tag">{{tags prefix="标签："}}</span>
+            <i class="split-point"></i>
+            <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">
+              {{date format="YYYY年MM月DD日"}}
+            </time>
+          </div>
+          <a id="read-more" href="{{url}}">阅读全文
+            <span class="read-more-arrow"></span>
+          </a>
+        </footer>
+      </article>
+      {{/foreach}} {{! Previous/next page links - displayed on every page }} {{pagination}}
+    </div>
+  </div>
+  <aside>
+    <section class="statistic-list-container">
+      <!-- <span class="author-display" style="background-image: url({{asset "images/image.png"}});"></span> -->
+      <p class="author-name">Jack Chou</p>
+      <ul class="statistic-list" id="statistic-list">
+        <li>
+          <span>Posts</span>
+          <p class="total-posts">-</p>
+        </li>
+        <!--
+          -->
+        <li>
+          <span>Tags</span>
+          <p class="total-tags">-</p>
+        </li>
+        <!--
+          -->
+        <li>
+          <span>Site Runs</span>
+          <p>
+            <span class="site-runtime" id="site-runtime">-</span>
+            <span> days</span>
+          </p>
+        </li>
+        <!--
+          -->
+        <li>
+          <span>Visitors</span>
+          <div>
+            <p id="busuanzi_container_site_uv" style="display: block;">
+              <span id="busuanzi_value_site_uv">1</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+      <ul class="enjoy-life-list">
+        <li>
+          <a href="https://github.com/sea-ice" title="github">
+            <span style="background-image: url({{asset " images/github.svg "}});"></span>
+            <p>
+              Coder
+            </p>
+          </a>
+        </li>
+        <!--
+          -->
+        <li>
+          <a href="https://www.w3ctech.com/topic/digest" title="W3cTech社区">
+            <span style="background-image: url({{asset " images/community.svg "}});"></span>
+            <p>
+              Community
+            </p>
+          </a>
+        </li>
+        <!--
+          -->
+        <li>
+          <a href="http://www.xiami.com/space/collect/u/34721067?spm=0.0.0.0.vtX3aG" title="虾米音乐">
+            <span style="background-image: url({{asset " images/xiami.svg "}});"></span>
+            <p>
+              Relax
+            </p>
+          </a>
+        </li>
+        <!--
+          -->
+        <li>
+          <a href="https://www.zhihu.com/topics" title="知乎，发现更大的世界">
+            <span style="background-image: url({{asset " images/zhihu.svg "}});"></span>
+            <p>
+              Find More
+            </p>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section class="tags-list">
+      <h2>标签云</h2>
+      {{tag_cloud limit="all"}}
+    </section>
+    <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">订 阅</a>
+  </aside>
+</main>
+<script type="text/javascript">
+  var bgUrl = ["{{asset 'images/morning.png'}}", "{{asset 'images/sunny.png'}}", "{{asset 'images/birds.png'}}", "{{asset 'images/afternoon.png'}}", "{{asset 'images/stars.png'}}"],
+    statisticListContainer = document.querySelector(".statistic-list-container"),
+    hour = (new Date()).getHours();
+  if (hour >= 6 && hour < 10) {
+    statisticListContainer.style.backgroundImage = "url(" + bgUrl[0] + ")";
+  } else if (hour >= 10 && hour < 14) {
+    statisticListContainer.style.backgroundImage = "url(" + bgUrl[1] + ")";
+  } else if (hour >= 14 && hour < 16) {
+    statisticListContainer.style.backgroundImage = "url(" + bgUrl[2] + ")";
+  } else if (hour >= 16 && hour < 20) {
+    statisticListContainer.style.backgroundImage = "url(" + bgUrl[3] + ")";
+  } else {
+    statisticListContainer.style.backgroundImage = "url(" + bgUrl[4] + ")";
+  }
+</script>

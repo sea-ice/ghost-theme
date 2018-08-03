@@ -1,0 +1,12 @@
+<ul class="tag-cloud">
+	{{#get "tags" limit="all" include="count.posts" order="count.posts desc" }}
+	    {{#foreach tags}}
+			<li>
+				<a href="/tag/{{slug}}" class="tag-item">
+					<span class="tag-image {{name}}-icon" style="background-image: url({{image}});"></span>
+					{{name}} ({{count.posts}})
+				</a>
+			</li>
+	    {{/foreach}}
+	{{/get}}
+</ul>

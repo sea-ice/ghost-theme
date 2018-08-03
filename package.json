@@ -1,0 +1,23 @@
+{
+  "name": "ghost-theme",
+  "version": "1.0.0",
+  "description": "theme used in my ghost blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sea-ice/ghost-theme.git"
+  },
+  "keywords": [
+    "ghost",
+    "theme"
+  ],
+  "author": "Jack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sea-ice/ghost-theme/issues"
+  },
+  "homepage": "https://github.com/sea-ice/ghost-theme#readme"
+}
